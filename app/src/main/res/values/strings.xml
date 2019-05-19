@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Death Tracker</string>
+    <string name="make_a_guess">Make a guess</string>
+    <string name="check_if_i_am_right">check if i am right</string>
+    <string name="enter">enter</string>
+    <string name="enter_the_age">enter the age</string>
+    <string name="you_won">You Won !!!</string>
+    <string name="you_lost">You Lost !!!</string>
+    <string name="reset">Reset</string>
+</resources>
