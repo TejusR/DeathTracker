@@ -24,6 +24,7 @@ private int CorrectAge, GuessedAge,fail,sucess;
 public static final String SaveName = "DeathRecord";
 public static final String Sucessref = "SucessRecord";
 public static final String Failref = "FalureRecord";
+public static final String AgeKey = "ageRecord";
 private SharedPreferences save;
 private SharedPreferences.Editor editor;
     @Override
@@ -72,11 +73,21 @@ private SharedPreferences.Editor editor;
         SucessText.setText("You succeeded "+sucess+" times");
         layout.setBackgroundColor(getResources().getColor(R.color.white));
         pallete = new int[]{R.color.hue0,R.color.hue1,R.color.hue2,R.color.hue3,R.color.hue4,R.color.hue5,R.color.hue6,R.color.hue7,R.color.hue8,R.color.hue9};
-        guessbtn.setVisibility(View.GONE);
-        age.setText("");
-        guess.setVisibility(View.GONE);
-        age.setVisibility(View.VISIBLE);
-        enterbtn.setVisibility(View.VISIBLE);
+        CorrectAge = save.getInt(AgeKey,0);
+        if(CorrectAge!=0 ){
+            guessbtn.setVisibility(View.VISIBLE);
+            guess.setVisibility(View.VISIBLE);
+            age.setVisibility(View.GONE);
+            enterbtn.setVisibility(View.GONE);
+            age.onEditorAction(EditorInfo.IME_ACTION_DONE);
+        }
+        else {
+            guessbtn.setVisibility(View.GONE);
+            age.setText("");
+            guess.setVisibility(View.GONE);
+            age.setVisibility(View.VISIBLE);
+            enterbtn.setVisibility(View.VISIBLE);
+        }
         enterbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +105,8 @@ private SharedPreferences.Editor editor;
                         enterbtn.setVisibility(View.GONE);
                         age.onEditorAction(EditorInfo.IME_ACTION_DONE);
                         CorrectAge = Integer.parseInt(temp);
+                        editor.putInt(AgeKey,CorrectAge);
+                        editor.apply();
                     }
                     else{
                         Toast toast = Toast.makeText(getApplicationContext(),"enter a valid age (1 - 100)",Toast.LENGTH_SHORT);
@@ -123,6 +136,8 @@ private SharedPreferences.Editor editor;
                         Toast.makeText(getApplicationContext(), "You guessed too low\nHe can live longer", Toast.LENGTH_LONG).show();
                     } else if (GuessedAge == CorrectAge) {
                         diff = 0;
+                        editor.putInt(AgeKey,0);
+                        editor.apply();
                         Intent winintent = new Intent(getApplicationContext(), winscreen.class);
                         startActivity(winintent);
                         onStart();

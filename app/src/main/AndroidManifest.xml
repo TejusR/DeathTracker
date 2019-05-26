@@ -19,9 +19,6 @@
         <activity android:name=".winscreen"
             android:theme="@style/AppTheme.custom">
         </activity>
-        <activity android:name=".lostscreen"
-            android:theme="@style/AppTheme.custom">
-        </activity>
         <activity android:name=".HackerActivity">
         </activity>
     </application>
