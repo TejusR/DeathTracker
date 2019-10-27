@@ -46,13 +46,6 @@ private SharedPreferences.Editor editor;
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
-        MenuItem menuItem = menu.findItem(R.id.hacker);
-        menuItem.setVisible(false);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -60,6 +53,14 @@ private SharedPreferences.Editor editor;
         if(id == R.id.normal){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
+        return true;
+    }
+    
+     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        MenuItem menuItem = menu.findItem(R.id.hacker);
+        menuItem.setVisible(false);
         return true;
     }
 
